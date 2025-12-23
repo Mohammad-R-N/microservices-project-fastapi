@@ -10,7 +10,7 @@ app.include_router(products.router)
 
 origins = [
     "http://localhost",
-    "http://localhost:8080",
+    "http://localhost:7000",
 ]
 
 app.add_middleware(
