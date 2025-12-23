@@ -1,5 +1,6 @@
 from models.orders import Order
 import time
+from db.redis import redis
 
 
 def order_format(pk: str):
@@ -15,7 +16,8 @@ def order_format(pk: str):
     }
 
 
-def compelete_order(order: Order):
+def complete_order(order: Order):
     time.sleep(3)
     order.status = "Complete"
     order.save()
+    redis.xadd(name="order-completed", fields=order.model_dump())
